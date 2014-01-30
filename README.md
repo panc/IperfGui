@@ -1,4 +1,4 @@
 iperf.gui
 =========
 
-Gui the network monitoring tool Iperf
+A simple Gui for the network monitoring tool [Iperf](http://iperf.fr/).
