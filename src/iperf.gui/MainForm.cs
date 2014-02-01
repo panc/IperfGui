@@ -76,7 +76,8 @@ namespace Iperf.Gui
             if (_serverPortCheckBox.Checked)
             {
                 arguments.Append("-p ")
-                    .Append(_serverPortTextBox.Text);
+                    .Append(_serverPortTextBox.Text)
+                    .Append(" ");
             }
 
             if (_serverWindowCheckBox.Checked)
@@ -84,7 +85,8 @@ namespace Iperf.Gui
                 var unit = _serverWindowComboBox.SelectedValue.ToString();
                 arguments.Append("-w ")
                     .Append(_serverWindowTextBox.Text)
-                    .Append(unit);
+                    .Append(unit)
+                    .Append(" ");
             }
 
             _serverProcess = Process.Start(IPERF_EXE, arguments.ToString());
@@ -147,18 +149,26 @@ namespace Iperf.Gui
         {
             var arguments = new StringBuilder("-c ");
 
-            if (_serverPortCheckBox.Checked)
+            if (_clientPortCheckBox.Checked)
+            {
+                arguments.Append(_clientAddressTextBox.Text)
+                    .Append(" ");
+            }
+            
+            if (_clientPortCheckBox.Checked)
             {
                 arguments.Append("-p ")
-                    .Append(_serverPortTextBox.Text);
+                    .Append(_clientPortTextBox.Text)
+                    .Append(" ");
             }
 
-            if (_serverWindowCheckBox.Checked)
+            if (_clientWindowCheckBox.Checked)
             {
-                var unit = _serverWindowComboBox.SelectedValue.ToString();
+                var unit = _clientWindowComboBox.SelectedValue.ToString();
                 arguments.Append("-w ")
                     .Append(_serverWindowTextBox.Text)
-                    .Append(unit);
+                    .Append(unit)
+                    .Append(" ");
             }
 
             _clientProcess= Process.Start(IPERF_EXE, arguments.ToString());
