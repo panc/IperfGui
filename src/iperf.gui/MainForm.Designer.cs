@@ -30,6 +30,7 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this._serverModeTabPage = new System.Windows.Forms.TabPage();
+            this._serverOutputTextBox = new System.Windows.Forms.TextBox();
             this._serverSettingsPanel = new System.Windows.Forms.Panel();
             this._serverPortCheckBox = new System.Windows.Forms.CheckBox();
             this._serverPortTextBox = new System.Windows.Forms.TextBox();
@@ -38,6 +39,7 @@
             this._serverWindowTextBox = new System.Windows.Forms.TextBox();
             this._startServerButton = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this._clientOutputTextBox = new System.Windows.Forms.TextBox();
             this._clientSettingsPanel = new System.Windows.Forms.Panel();
             this._clientWindowComboBox = new System.Windows.Forms.ComboBox();
             this._clientWindowCheckBox = new System.Windows.Forms.CheckBox();
@@ -61,31 +63,45 @@
             // 
             // tabControl1
             // 
+            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this._serverModeTabPage);
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 28);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(377, 332);
+            this.tabControl1.Size = new System.Drawing.Size(487, 497);
             this.tabControl1.TabIndex = 0;
             // 
             // _serverModeTabPage
             // 
+            this._serverModeTabPage.Controls.Add(this._serverOutputTextBox);
             this._serverModeTabPage.Controls.Add(this._serverSettingsPanel);
             this._serverModeTabPage.Controls.Add(this._startServerButton);
             this._serverModeTabPage.Location = new System.Drawing.Point(4, 25);
             this._serverModeTabPage.Name = "_serverModeTabPage";
             this._serverModeTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this._serverModeTabPage.Size = new System.Drawing.Size(369, 303);
+            this._serverModeTabPage.Size = new System.Drawing.Size(479, 468);
             this._serverModeTabPage.TabIndex = 0;
             this._serverModeTabPage.Text = "Server-Mode";
             this._serverModeTabPage.UseVisualStyleBackColor = true;
             // 
+            // _serverOutputTextBox
+            // 
+            this._serverOutputTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this._serverOutputTextBox.Location = new System.Drawing.Point(0, 176);
+            this._serverOutputTextBox.Multiline = true;
+            this._serverOutputTextBox.Name = "_serverOutputTextBox";
+            this._serverOutputTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this._serverOutputTextBox.Size = new System.Drawing.Size(479, 292);
+            this._serverOutputTextBox.TabIndex = 6;
+            // 
             // _serverSettingsPanel
             // 
-            this._serverSettingsPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this._serverSettingsPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this._serverSettingsPanel.Controls.Add(this._serverPortCheckBox);
             this._serverSettingsPanel.Controls.Add(this._serverPortTextBox);
@@ -94,7 +110,7 @@
             this._serverSettingsPanel.Controls.Add(this._serverWindowTextBox);
             this._serverSettingsPanel.Location = new System.Drawing.Point(0, 0);
             this._serverSettingsPanel.Name = "_serverSettingsPanel";
-            this._serverSettingsPanel.Size = new System.Drawing.Size(369, 257);
+            this._serverSettingsPanel.Size = new System.Drawing.Size(479, 129);
             this._serverSettingsPanel.TabIndex = 4;
             // 
             // _serverPortCheckBox
@@ -115,7 +131,7 @@
             this._serverPortTextBox.Enabled = false;
             this._serverPortTextBox.Location = new System.Drawing.Point(130, 20);
             this._serverPortTextBox.Name = "_serverPortTextBox";
-            this._serverPortTextBox.Size = new System.Drawing.Size(144, 22);
+            this._serverPortTextBox.Size = new System.Drawing.Size(254, 22);
             this._serverPortTextBox.TabIndex = 5;
             this._serverPortTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -125,7 +141,7 @@
             this._serverWindowComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._serverWindowComboBox.Enabled = false;
             this._serverWindowComboBox.FormattingEnabled = true;
-            this._serverWindowComboBox.Location = new System.Drawing.Point(280, 48);
+            this._serverWindowComboBox.Location = new System.Drawing.Point(390, 48);
             this._serverWindowComboBox.Name = "_serverWindowComboBox";
             this._serverWindowComboBox.Size = new System.Drawing.Size(81, 24);
             this._serverWindowComboBox.TabIndex = 3;
@@ -148,14 +164,14 @@
             this._serverWindowTextBox.Enabled = false;
             this._serverWindowTextBox.Location = new System.Drawing.Point(130, 48);
             this._serverWindowTextBox.Name = "_serverWindowTextBox";
-            this._serverWindowTextBox.Size = new System.Drawing.Size(144, 22);
+            this._serverWindowTextBox.Size = new System.Drawing.Size(254, 22);
             this._serverWindowTextBox.TabIndex = 2;
             this._serverWindowTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // _startServerButton
             // 
-            this._startServerButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this._startServerButton.Location = new System.Drawing.Point(261, 263);
+            this._startServerButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this._startServerButton.Location = new System.Drawing.Point(371, 135);
             this._startServerButton.Name = "_startServerButton";
             this._startServerButton.Size = new System.Drawing.Size(100, 32);
             this._startServerButton.TabIndex = 0;
@@ -165,20 +181,32 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this._clientOutputTextBox);
             this.tabPage2.Controls.Add(this._clientSettingsPanel);
             this.tabPage2.Controls.Add(this._startClientButton);
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(369, 303);
+            this.tabPage2.Size = new System.Drawing.Size(513, 468);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Client-Mode";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // _clientOutputTextBox
+            // 
+            this._clientOutputTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this._clientOutputTextBox.Location = new System.Drawing.Point(0, 176);
+            this._clientOutputTextBox.Multiline = true;
+            this._clientOutputTextBox.Name = "_clientOutputTextBox";
+            this._clientOutputTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this._clientOutputTextBox.Size = new System.Drawing.Size(513, 292);
+            this._clientOutputTextBox.TabIndex = 7;
+            // 
             // _clientSettingsPanel
             // 
-            this._clientSettingsPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this._clientSettingsPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this._clientSettingsPanel.Controls.Add(this._clientWindowComboBox);
             this._clientSettingsPanel.Controls.Add(this._clientWindowCheckBox);
@@ -189,7 +217,7 @@
             this._clientSettingsPanel.Controls.Add(this._clientAddressTextBox);
             this._clientSettingsPanel.Location = new System.Drawing.Point(0, 0);
             this._clientSettingsPanel.Name = "_clientSettingsPanel";
-            this._clientSettingsPanel.Size = new System.Drawing.Size(369, 257);
+            this._clientSettingsPanel.Size = new System.Drawing.Size(513, 129);
             this._clientSettingsPanel.TabIndex = 6;
             // 
             // _clientWindowComboBox
@@ -198,7 +226,7 @@
             this._clientWindowComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._clientWindowComboBox.Enabled = false;
             this._clientWindowComboBox.FormattingEnabled = true;
-            this._clientWindowComboBox.Location = new System.Drawing.Point(280, 76);
+            this._clientWindowComboBox.Location = new System.Drawing.Point(424, 76);
             this._clientWindowComboBox.Name = "_clientWindowComboBox";
             this._clientWindowComboBox.Size = new System.Drawing.Size(81, 24);
             this._clientWindowComboBox.TabIndex = 10;
@@ -221,7 +249,7 @@
             this._clientWindowTextBox.Enabled = false;
             this._clientWindowTextBox.Location = new System.Drawing.Point(130, 76);
             this._clientWindowTextBox.Name = "_clientWindowTextBox";
-            this._clientWindowTextBox.Size = new System.Drawing.Size(144, 22);
+            this._clientWindowTextBox.Size = new System.Drawing.Size(288, 22);
             this._clientWindowTextBox.TabIndex = 9;
             this._clientWindowTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -243,7 +271,7 @@
             this._clientPortTextBox.Enabled = false;
             this._clientPortTextBox.Location = new System.Drawing.Point(130, 48);
             this._clientPortTextBox.Name = "_clientPortTextBox";
-            this._clientPortTextBox.Size = new System.Drawing.Size(144, 22);
+            this._clientPortTextBox.Size = new System.Drawing.Size(288, 22);
             this._clientPortTextBox.TabIndex = 7;
             this._clientPortTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -265,13 +293,13 @@
             this._clientAddressTextBox.Enabled = false;
             this._clientAddressTextBox.Location = new System.Drawing.Point(130, 20);
             this._clientAddressTextBox.Name = "_clientAddressTextBox";
-            this._clientAddressTextBox.Size = new System.Drawing.Size(144, 22);
+            this._clientAddressTextBox.Size = new System.Drawing.Size(288, 22);
             this._clientAddressTextBox.TabIndex = 2;
             // 
             // _startClientButton
             // 
-            this._startClientButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this._startClientButton.Location = new System.Drawing.Point(261, 263);
+            this._startClientButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this._startClientButton.Location = new System.Drawing.Point(405, 135);
             this._startClientButton.Name = "_startClientButton";
             this._startClientButton.Size = new System.Drawing.Size(100, 32);
             this._startClientButton.TabIndex = 5;
@@ -286,7 +314,7 @@
             this.aboutToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(377, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(487, 28);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -315,19 +343,19 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(377, 360);
+            this.ClientSize = new System.Drawing.Size(487, 526);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.menuStrip1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MainMenuStrip = this.menuStrip1;
-            this.MaximizeBox = false;
             this.Name = "MainForm";
             this.Text = "Iperf Gui";
             this.tabControl1.ResumeLayout(false);
             this._serverModeTabPage.ResumeLayout(false);
+            this._serverModeTabPage.PerformLayout();
             this._serverSettingsPanel.ResumeLayout(false);
             this._serverSettingsPanel.PerformLayout();
             this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
             this._clientSettingsPanel.ResumeLayout(false);
             this._clientSettingsPanel.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
@@ -362,6 +390,8 @@
         private System.Windows.Forms.ComboBox _clientWindowComboBox;
         private System.Windows.Forms.CheckBox _clientWindowCheckBox;
         private System.Windows.Forms.TextBox _clientWindowTextBox;
+        private System.Windows.Forms.TextBox _serverOutputTextBox;
+        private System.Windows.Forms.TextBox _clientOutputTextBox;
     }
 }
 

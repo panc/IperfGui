@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Text;
 using System.Windows.Forms;
 
@@ -7,14 +6,15 @@ namespace Iperf.Gui
 {
     public partial class MainForm : Form
     {
-        private const string IPERF_EXE = "iperf.exe";
-
-        private Process _serverProcess;
-        private Process _clientProcess;
+        private readonly IperfProcess _serverProcess;
+        private readonly IperfProcess _clientProcess;
 
         public MainForm()
         {
             InitializeComponent();
+
+            _serverProcess = new IperfProcess(_StopServer, _OnServerOutputDataReceived);
+            _clientProcess = new IperfProcess(_StopClient, _OnClientOutputDataReceived);
 
             var availableSizes = new[]
             {
@@ -50,11 +50,8 @@ namespace Iperf.Gui
 
         protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
         {
-            if (_serverProcess != null)
-                _serverProcess.Kill();
-
-            if (_clientProcess != null)
-                _clientProcess.Kill();
+            _StopServer();
+            _StopClient();
 
             base.OnClosing(e);
         }
@@ -63,7 +60,7 @@ namespace Iperf.Gui
 
         private void StartServerButton_Click(object sender, EventArgs e)
         {
-            if (_serverProcess != null)
+            if (_serverProcess.IsRunning)
                 _StopServer();
             else
                 _StartServer();
@@ -88,10 +85,8 @@ namespace Iperf.Gui
                     .Append(unit)
                     .Append(" ");
             }
-
-            _serverProcess = Process.Start(IPERF_EXE, arguments.ToString());
-            _serverProcess.EnableRaisingEvents = true;
-            _serverProcess.Exited += _OnServerStopped;
+            
+            _serverProcess.Start(arguments.ToString());
 
             _serverSettingsPanel.Enabled = false;
             _startServerButton.Text = "Stop Server";
@@ -99,27 +94,18 @@ namespace Iperf.Gui
 
         private void _StopServer()
         {
-            if (_serverProcess != null)
-            {
-                _serverProcess.Kill();
-                _serverProcess = null;
-            }
-
             if (InvokeRequired)
             {
                 Invoke((Action)(_StopServer));
             }
             else
             {
+                if (_serverProcess.IsRunning)
+                    _serverProcess.Stop();
+
                 _serverSettingsPanel.Enabled = true;
                 _startServerButton.Text = "Start Server";
             }
-        }
-
-        private void _OnServerStopped(object sender, EventArgs e)
-        {
-            _serverProcess = null;
-            _StopServer();
         }
 
         private void ServerWindowCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -133,13 +119,21 @@ namespace Iperf.Gui
             _serverPortTextBox.Enabled = _serverPortCheckBox.Checked;
         }
 
+        private void _OnServerOutputDataReceived(string data)
+        {
+            if (InvokeRequired)
+                Invoke((Action<string>)(_OnServerOutputDataReceived), data);
+            else
+                _serverOutputTextBox.Text += data + Environment.NewLine;
+        }
+
         #endregion
 
         #region Client Mode
 
         private void StartClientButton_Click(object sender, EventArgs e)
         {
-            if (_clientProcess != null)
+            if (_clientProcess.IsRunning)
                 _StopClient();
             else
                 _StartClient();
@@ -171,37 +165,26 @@ namespace Iperf.Gui
                     .Append(" ");
             }
 
-            _clientProcess= Process.Start(IPERF_EXE, arguments.ToString());
-            _clientProcess.EnableRaisingEvents = true;
-            _clientProcess.Exited += _OnClientStopped;
-
+            _clientProcess.Start(arguments.ToString());
+            
             _clientSettingsPanel.Enabled = false;
             _startClientButton.Text = "Stop Client";
         }
 
         private void _StopClient()
         {
-            if (_clientProcess != null)
-            {
-                _clientProcess.Kill();
-                _clientProcess = null;
-            }
-
             if (InvokeRequired)
             {
                 Invoke((Action)(_StopClient));
             }
             else
             {
+                if (_clientProcess.IsRunning)
+                    _clientProcess.Stop();
+                
                 _clientSettingsPanel.Enabled = true;
                 _startClientButton.Text = "Start Client";
             }
-        }
-
-        private void _OnClientStopped(object sender, EventArgs e)
-        {
-            _clientProcess = null;
-            _StopClient();
         }
 
         private void _clientAddressCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -218,6 +201,14 @@ namespace Iperf.Gui
         {
             _clientWindowTextBox.Enabled = _clientWindowCheckBox.Checked;
             _clientWindowComboBox.Enabled = _clientWindowCheckBox.Checked;
+        }
+
+        private void _OnClientOutputDataReceived(string data)
+        {
+            if (InvokeRequired)
+                Invoke((Action<string>)(_OnClientOutputDataReceived), data);
+            else
+                _clientOutputTextBox.Text += data + Environment.NewLine;
         }
 
         #endregion
